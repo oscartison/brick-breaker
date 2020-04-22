@@ -1,0 +1,47 @@
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 'header' 'main' 'footer';
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+    background-color: #1D67BB;
+    color: white;
+}
+
+main {
+    grid-area: main;
+    padding: 3em;
+    color: #091834;
+}
+
+footer {
+    grid-area: footer;
+    background-color: #1D67BB;
+    color: white;
+    padding-left: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+#gameContainer{
+    border: 0.1em solid #1D67BB;
+    border-radius: 0.2em;
+    height: 600px;
+    width: 960px;
+    margin: auto;
+    position: relative;
+}
+
+#paddle{
+    height: 16px;
+    width: 96px;
+    background-color: #1D67BB;
+    position: absolute;
+    left: 0px; bottom: 0px;
+}
