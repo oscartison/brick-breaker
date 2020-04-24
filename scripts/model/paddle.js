@@ -2,7 +2,7 @@ class Paddle {
 
     /**
      * constructs a new paddle at left from the left side of the game
-     * @param {int} left 
+     * @param {number} left 
      */
     constructor(left){
         if(left < 0 || left > Scene_Width - Paddle_Width){
@@ -20,7 +20,7 @@ class Paddle {
 
     /**
      * moves the paddle at position left
-     * @param {int} left the new position of the paddle
+     * @param {number} left the new position of the paddle
      */
     moveTo(left){
         if(left < 0 || left > Scene_Width - Paddle_Width){
