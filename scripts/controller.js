@@ -5,6 +5,7 @@
  */
 $(document).ready(() => {
     const paddle = new Paddle(Scene_Width / 2 - (Paddle_Width / 2));
+    const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, .5);
     displayPaddle(paddle);
 
     $(document).mousemove(function (e) {
@@ -12,4 +13,9 @@ $(document).ready(() => {
         paddle.moveTo(new_left);
         displayPaddle(paddle);
     });
+
+    setInterval(() => {
+        ball.move();
+        displayBall(ball);
+    }, 10);
 });
