@@ -3,3 +3,5 @@ const Scene_Width = 960;
 
 const Paddle_Width = 96;
 const Paddle_Height = 16;
+
+const Ball_Radius = 12;
