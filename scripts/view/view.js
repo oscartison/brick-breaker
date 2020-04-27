@@ -3,14 +3,11 @@
  * @param {Paddle} paddle the paddle that needs to be displayed
  */
 function displayPaddle(paddle) {
-    const left = paddle.left;
-    $("#paddle").css("left", `${left}px`);
+    $("#paddle").css("left", `${paddle.left}px`);
 }
 
 
 function displayBall(ball) {
-    const x = ball.x;
-    $("#ball").css("left", `${x}px`);
-    const y = ball.y;
-    $("#ball").css("top", `${y}px`);
+    $("#ball").css("left", `${ball.x - Ball_Radius}px`);
+    $("#ball").css("top", `${ball.y - Ball_Radius}px`);
 }
