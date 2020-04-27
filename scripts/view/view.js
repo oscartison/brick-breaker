@@ -6,3 +6,11 @@ function displayPaddle(paddle) {
     const left = paddle.left;
     $("#paddle").css("left", `${left}px`);
 }
+
+
+function displayBall(ball) {
+    const x = ball.x;
+    $("#ball").css("left", `${x}px`);
+    const y = ball.y;
+    $("#ball").css("top", `${y}px`);
+}
