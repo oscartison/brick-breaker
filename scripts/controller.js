@@ -17,5 +17,8 @@ $(document).ready(() => {
     setInterval(() => {
         ball.move();
         displayBall(ball);
+        if (ball.isBallOnPaddle(paddle.left)){
+            ball.hitPaddle();
+        }
     }, 10);
 });
