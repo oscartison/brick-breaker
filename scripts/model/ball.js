@@ -32,9 +32,28 @@ class Ball {
     }
 
     /**
+     * reverses the horizontal movement
+     */
+    _reverseX() {
+        this._dx = -this._dx;
+    }
+
+    /**
+     * reverses the vertical movement
+     */
+    _reverseY() {
+        this._dy = -this._dy;
+    }
+
+    /**
      * moves the ball dx in the horizontal direction and dy in the vertical direction
      */
     move() {
+        if(this._y - Ball_Radius <= 0 || this._y + Ball_Radius >= Scene_Height) {
+            this._reverseY();
+        } else if (this._x - Ball_Radius <= 0  || this._x + Ball_Radius >= Scene_Width) {
+            this._reverseX();
+        }  
         this._x = this._x + this._dx;
         this._y = this._y + this._dy;
     }
