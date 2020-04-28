@@ -45,15 +45,6 @@ class Ball {
         this._dy = -this._dy;
     }
 
-    /**
-     * checks wether the ball hits the paddle.
-     * @param {number} paddle_Left the position of the left side of the paddle 
-     */
-    isBallOnPaddle(paddle_Left) {
-        return (this._x + Ball_Radius >= paddle_Left) && 
-        (this._x - Ball_Radius <= paddle_Left + Paddle_Width) && 
-        (this._y + Ball_Radius >= Scene_Height - Paddle_Height);
-    }
 
     /**
      * changes the movement of the ball when it hits the paddle

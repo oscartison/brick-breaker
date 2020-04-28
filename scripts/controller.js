@@ -1,6 +1,18 @@
 "use strict";
 
 /**
+ * checks wehter there is a collision between the ball and the paddle
+ * @param {Ball} ball 
+ * @param {Paddle} paddle 
+ */
+function isBallOnPaddle(ball, paddle) {
+    return (ball.x + Ball_Radius >= paddle.left) &&
+        (ball.x - Ball_Radius <= paddle.left + Paddle_Width) &&
+        (ball.y + Ball_Radius >= Scene_Height - Paddle_Height);
+}
+
+
+/**
  * when the mouse moves the paddle moves at the same width as the mouse
  */
 $(document).ready(() => {
@@ -17,7 +29,7 @@ $(document).ready(() => {
     setInterval(() => {
         ball.move();
         displayBall(ball);
-        if (ball.isBallOnPaddle(paddle.left)){
+        if (isBallOnPaddle(ball, paddle)) {
             ball.hitPaddle();
         }
     }, 10);
