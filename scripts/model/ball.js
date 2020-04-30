@@ -5,7 +5,7 @@ class Ball {
      * @param {number} x the horizontal position of the ball starting from the left side of the game
      * @param {number} y the vertical position of the ball starting from the top of the game
      * @param {number} dx the horizontal movement of the ball
-     * @param {number} y the vertical movement of the ball 
+     * @param {number} dy the vertical movement of the ball 
      */
     constructor(x, y, dx, dy) {
         if (x > Scene_Width || y > Scene_Height || x < 0 || y < 0) {
@@ -43,6 +43,14 @@ class Ball {
      */
     _reverseY() {
         this._dy = -this._dy;
+    }
+
+
+    /**
+     * changes the movement of the ball when it hits the paddle
+     */
+    hitPaddle() {
+        this._reverseY();
     }
 
     /**
