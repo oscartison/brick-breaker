@@ -20,6 +20,6 @@ function displayBall(ball) {
  * @param {Brick} brick the paddle that needs to be displayed
  */
 function displayBrick(brick) {
-    $("#brick").css("left", `${brick.x}px`);
-    $("#brick").css("top", `${brick.y}px`);
+    $(".brick").css("left", `${brick.x}px`);
+    $(".brick").css("top", `${brick.y}px`);
 }
