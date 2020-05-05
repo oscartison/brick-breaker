@@ -11,6 +11,20 @@ function isBallOnPaddle(ball, paddle) {
         (ball.y + Ball_Radius >= Scene_Height - Paddle_Height);
 }
 
+/**
+ * creates an array of bricks
+ * @param {number} rows the amount of rows of bricks
+ * @param {number} cols the amount of cols of bricks
+ */
+function createWall(rows, cols) {
+    const wallArray = [];
+    for(let i = 0; i < cols; i++) {
+        for(let j = 0; j < rows; j++) {
+            wallArray.push(new Brick(i * Brick_Width , j * Brick_Height));
+        }
+    }
+    return wallArray;
+}
 
 /**
  * when the mouse moves the paddle moves at the same width as the mouse
@@ -18,8 +32,10 @@ function isBallOnPaddle(ball, paddle) {
 $(document).ready(() => {
     const paddle = new Paddle(Scene_Width / 2 - (Paddle_Width / 2));
     const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -.5);
+    const wall = createWall(Bricks_Rows, Bricks_Colums);
     
     displayPaddle(paddle);
+    displayBricks(wall);
 
     $(document).mousemove(function (e) {
         const new_left = e.clientX - $("#gameContainer").offset().left - (Paddle_Width / 2);
