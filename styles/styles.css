@@ -58,7 +58,8 @@ footer {
 }
 
 .brick {
-  border: 1px solid black;
+  border: 0.5px solid black;
   background-color: #1d67bb;
   position: absolute;
+  box-sizing: border-box;
 }
