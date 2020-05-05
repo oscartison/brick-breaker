@@ -56,3 +56,10 @@ footer {
   left: 468px;
   bottom: 288px;
 }
+
+.brick {
+  height: 25px;
+  width: 70px;
+  background-color: #1d67bb;
+  position: absolute;
+}
