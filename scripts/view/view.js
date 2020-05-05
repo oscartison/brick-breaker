@@ -16,12 +16,12 @@ function displayBall(ball) {
 
 /**
  * displays the brick into the gameConainer at the right position
- * @param {Brick} brick the paddle that needs to be displayed
+ * @param {Brick[]} bricks the wall of Bricks that needs to be displayed
  */
 function displayBricks(bricks) {
     for (const brick of bricks) {
         $("#wall").append($("<div>")
             .addClass("brick")
-            .css({ "left": `${brick.x}px`, "top": `${brick.y}px` }));
+            .css({ "left": `${brick.x}px`, "top": `${brick.y}px`, "width": `${Brick_Width}px`, "height": `${Brick_Height}px`}));
     }
 }

@@ -20,7 +20,7 @@ function createWall(rows, cols) {
     const wallArray = [];
     for(let i = 0; i < cols; i++) {
         for(let j = 0; j < rows; j++) {
-            wallArray.push(new Brick(i * Brick_Width , j * Brick_Heigth));
+            wallArray.push(new Brick(i * Brick_Width , j * Brick_Height));
         }
     }
     return wallArray;
