@@ -44,7 +44,7 @@ class Brick {
     /**
      * sets the attribute hit to true
      */
-    setHit(bool) {
-        this._hit = bool;
+    setHit() {
+        this._hit = true;
     }
 }
