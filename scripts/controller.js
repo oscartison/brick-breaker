@@ -18,12 +18,23 @@ function isBallOnPaddle(ball, paddle) {
  */
 function createWall(rows, cols) {
     const wallArray = [];
-    for(let i = 0; i < cols; i++) {
-        for(let j = 0; j < rows; j++) {
-            wallArray.push(new Brick(i * Brick_Width , j * Brick_Height));
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            wallArray.push(new Brick(i * Brick_Width, j * Brick_Height));
         }
     }
     return wallArray;
+}
+
+function collisionBrick(wall, ball) {
+    for (let i = 0; i < wall.length; i++) {
+        if (((ball.x + Ball_Radius) >= wall[i].x)
+            && (ball.x - Ball_Radius <= wall[i].x + Brick_Width)
+            && (ball.y - Ball_Radius <= wall[i].y + Brick_Height)
+            && (ball.y + Ball_Radius >= wall[i].y)) {
+            console.log(`Collision x: ${wall[i].x} y: ${wall[i].y}`)
+        }
+    }
 }
 
 /**
@@ -33,7 +44,7 @@ $(document).ready(() => {
     const paddle = new Paddle(Scene_Width / 2 - (Paddle_Width / 2));
     const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -.5);
     const wall = createWall(Bricks_Rows, Bricks_Colums);
-    
+
     displayPaddle(paddle);
     displayBricks(wall);
 
@@ -49,5 +60,6 @@ $(document).ready(() => {
         if (isBallOnPaddle(ball, paddle)) {
             ball.hitPaddle();
         }
-    }, 10);
+        collisionBrick(wall, ball);
+    }, 5);
 });
