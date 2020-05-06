@@ -19,9 +19,14 @@ function displayBall(ball) {
  * @param {Brick[]} bricks the wall of Bricks that needs to be displayed
  */
 function displayBricks(bricks) {
-    for (const brick of bricks) {
+    for (let i = 0; i < bricks.length; i++) {
         $("#wall").append($("<div>")
             .addClass("brick")
-            .css({ "left": `${brick.x}px`, "top": `${brick.y}px`, "width": `${Brick_Width}px`, "height": `${Brick_Height}px`}));
+            .css({ "left": `${bricks[i].x}px`, "top": `${bricks[i].y}px`, "width": `${Brick_Width}px`, "height": `${Brick_Height}px`})
+            .attr("id", `brick${bricks[i].id}`));
     }
+}
+
+function deleteBrick(brick) {
+    $(`#brick${brick.id}`).removeClass("brick").addClass("hidden");
 }

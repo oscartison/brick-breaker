@@ -20,19 +20,27 @@ function createWall(rows, cols) {
     const wallArray = [];
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            wallArray.push(new Brick(i * Brick_Width, j * Brick_Height));
+            wallArray.push(new Brick(i * Brick_Width, j * Brick_Height, wallArray.length));
         }
     }
     return wallArray;
 }
 
+
+/**
+ * checks if there is a collision with a brick and deletes that brick
+ * @param {Brick[]} wall the array of bricks 
+ * @param {Ball} ball the ball in the game
+ */
 function collisionBrick(wall, ball) {
     for (let i = 0; i < wall.length; i++) {
-        if (((ball.x + Ball_Radius) >= wall[i].x)
+        if (!(wall[i].hit)
+            && ((ball.x + Ball_Radius) >= wall[i].x)
             && (ball.x - Ball_Radius <= wall[i].x + Brick_Width)
             && (ball.y - Ball_Radius <= wall[i].y + Brick_Height)
-            && (ball.y + Ball_Radius >= wall[i].y)) {
-            console.log(`Collision x: ${wall[i].x} y: ${wall[i].y}`)
+            && (ball.y + Ball_Radius) >= wall[i].y) {
+            wall[i].setHit(true);
+            deleteBrick(wall[i]);
         }
     }
 }
