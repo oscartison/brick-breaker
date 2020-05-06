@@ -61,5 +61,5 @@ $(document).ready(() => {
             ball.hitPaddle();
         }
         collisionBrick(wall, ball);
-    }, 10);
+    }, 5);
 });
