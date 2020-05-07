@@ -20,19 +20,27 @@ function createWall(rows, cols) {
     const wallArray = [];
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            wallArray.push(new Brick(i * Brick_Width, j * Brick_Height));
+            wallArray.push(new Brick(i * Brick_Width, j * Brick_Height, wallArray.length));
         }
     }
     return wallArray;
 }
 
+
+/**
+ * checks if there is a collision with a brick and deletes that brick
+ * @param {Brick[]} wall the array of bricks 
+ * @param {Ball} ball the ball in the game
+ */
 function collisionBrick(wall, ball) {
     for (let i = 0; i < wall.length; i++) {
-        if (((ball.x + Ball_Radius) >= wall[i].x)
+        if (!(wall[i].hit)
+            && ((ball.x + Ball_Radius) >= wall[i].x)
             && (ball.x - Ball_Radius <= wall[i].x + Brick_Width)
             && (ball.y - Ball_Radius <= wall[i].y + Brick_Height)
-            && (ball.y + Ball_Radius >= wall[i].y)) {
-            console.log(`Collision x: ${wall[i].x} y: ${wall[i].y}`)
+            && (ball.y + Ball_Radius) >= wall[i].y) {
+            wall[i].setHit(true);
+            deleteBrick(wall[i]);
         }
     }
 }
@@ -42,7 +50,7 @@ function collisionBrick(wall, ball) {
  */
 $(document).ready(() => {
     const paddle = new Paddle(Scene_Width / 2 - (Paddle_Width / 2));
-    const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -.5);
+    const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -1.5);
     const wall = createWall(Bricks_Rows, Bricks_Colums);
 
     displayPaddle(paddle);
