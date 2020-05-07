@@ -40,7 +40,7 @@ function collisionBrick(wall, ball) {
             && (ball.x - Ball_Radius <= wall[i].x + Brick_Width)
             && (ball.y - Ball_Radius <= wall[i].y + Brick_Height)
             && (ball.y + Ball_Radius) >= wall[i].y) {
-            wall[i].setHit(true);
+            wall[i].setHit();
             deleteBrick(wall[i]);
 
             if (!alreadyOneHit) {
