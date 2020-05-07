@@ -22,10 +22,12 @@ function displayBricks(bricks) {
     for (let i = 0; i < bricks.length; i++) {
         $("#wall").append($("<div>")
             .addClass("brick")
-            .css({ "left": `${bricks[i].x}px`,
-             "top": `${bricks[i].y}px`, 
-             "width": `${Brick_Width}px`, 
-             "height": `${Brick_Height}px`})
+            .css({
+                "left": `${bricks[i].x}px`,
+                "top": `${bricks[i].y}px`,
+                "width": `${Brick_Width}px`,
+                "height": `${Brick_Height}px`
+            })
             .attr("id", `brick${bricks[i].id}`));
     }
 }
