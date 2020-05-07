@@ -33,6 +33,7 @@ function createWall(rows, cols) {
  * @param {Ball} ball the ball in the game
  */
 function collisionBrick(wall, ball) {
+    let alreadyOneHit = false;
     for (let i = 0; i < wall.length; i++) {
         if (!(wall[i].hit)
             && ((ball.x + Ball_Radius) >= wall[i].x)
@@ -41,6 +42,11 @@ function collisionBrick(wall, ball) {
             && (ball.y + Ball_Radius) >= wall[i].y) {
             wall[i].setHit(true);
             deleteBrick(wall[i]);
+
+            if (!alreadyOneHit) {
+                ball.hitBrick(wall[i]);
+                alreadyOneHit = true;
+            }
         }
     }
 }

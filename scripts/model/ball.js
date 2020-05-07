@@ -54,6 +54,18 @@ class Ball {
     }
 
     /**
+     * changes the movement of the ball when it hits a brick
+     * @param {Brick} brick the brick hit by the ball 
+     */
+    hitBrick(brick) {
+        if(this._y - Ball_Radius <= brick.y + Brick_Height && this._y + Ball_Radius >= brick.y) {
+            this._reverseY();
+        } else {
+            this._reverseX();  
+    }
+}
+
+    /**
      * moves the ball dx in the horizontal direction and dy in the vertical direction
      */
     move() {
