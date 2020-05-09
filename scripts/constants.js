@@ -1,3 +1,5 @@
+"use strict";
+
 const Scene_Height = 600;
 const Scene_Width = 960;
 

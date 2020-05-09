@@ -1,8 +1,10 @@
+"use strict";
+
 class Paddle {
 
     /**
      * constructs a new paddle at left from the left side of the game
-     * @param {number} left 
+     * @param {number} left
      */
     constructor(left) {
         if (left < 0 || left > Scene_Width - Paddle_Width) {
@@ -23,7 +25,7 @@ class Paddle {
      * @param {number} left the new position of the paddle
      */
     moveTo(left) {
-        if (left > (Scene_Width - Paddle_Width)) {
+        if (left > Scene_Width - Paddle_Width) {
             this._left = Scene_Width - Paddle_Width;
         } else if (left < 0) {
             this._left = 0;

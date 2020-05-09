@@ -2,13 +2,13 @@
 
 /**
  * checks wehter there is a collision between the ball and the paddle
- * @param {Ball} ball 
- * @param {Paddle} paddle 
+ * @param {Ball} ball
+ * @param {Paddle} paddle
  */
 function isBallOnPaddle(ball, paddle) {
-    return (ball.x + Ball_Radius >= paddle.left) &&
-        (ball.x - Ball_Radius <= paddle.left + Paddle_Width) &&
-        (ball.y + Ball_Radius >= Scene_Height - Paddle_Height);
+    return ball.x + Ball_Radius >= paddle.left &&
+        ball.x - Ball_Radius <= paddle.left + Paddle_Width &&
+        ball.y + Ball_Radius >= Scene_Height - Paddle_Height;
 }
 
 /**
@@ -26,10 +26,9 @@ function createWall(rows, cols) {
     return wallArray;
 }
 
-
 /**
  * checks if there is a collision with a brick and deletes that brick
- * @param {Brick[]} wall the array of bricks 
+ * @param {Brick[]} wall the array of bricks
  * @param {Ball} ball the ball in the game
  */
 function collisionBrick(wall, ball) {
@@ -55,7 +54,7 @@ function collisionBrick(wall, ball) {
  * when the mouse moves the paddle moves at the same width as the mouse
  */
 $(document).ready(() => {
-    const paddle = new Paddle(Scene_Width / 2 - (Paddle_Width / 2));
+    const paddle = new Paddle(Scene_Width / 2 - Paddle_Width / 2);
     const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -1.5);
     const wall = createWall(Bricks_Rows, Bricks_Colums);
 
