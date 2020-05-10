@@ -1,3 +1,5 @@
+"use strict";
+
 class Ball {
 
     /**
@@ -5,7 +7,7 @@ class Ball {
      * @param {number} x the horizontal position of the ball starting from the left side of the game
      * @param {number} y the vertical position of the ball starting from the top of the game
      * @param {number} dx the horizontal movement of the ball
-     * @param {number} dy the vertical movement of the ball 
+     * @param {number} dy the vertical movement of the ball
      */
     constructor(x, y, dx, dy) {
         if (x > Scene_Width || y > Scene_Height || x < 0 || y < 0) {
@@ -45,7 +47,6 @@ class Ball {
         this._dy = -this._dy;
     }
 
-
     /**
      * changes the movement of the ball when it hits the paddle
      */
@@ -54,14 +55,26 @@ class Ball {
     }
 
     /**
+     * changes the movement of the ball when it hits a brick
+     * @param {Brick} brick the brick hit by the ball
+     */
+    hitBrick(brick) {
+        if (this._y - Ball_Radius <= brick.y + Brick_Height && this._y + Ball_Radius >= brick.y) {
+            this._reverseY();
+        } else {
+            this._reverseX();
+        }
+    }
+
+    /**
      * moves the ball dx in the horizontal direction and dy in the vertical direction
      */
     move() {
-        if(this._y - Ball_Radius <= 0 || this._y + Ball_Radius >= Scene_Height) {
+        if (this._y - Ball_Radius <= 0 || this._y + Ball_Radius >= Scene_Height) {
             this._reverseY();
-        } else if (this._x - Ball_Radius <= 0  || this._x + Ball_Radius >= Scene_Width) {
+        } else if (this._x - Ball_Radius <= 0 || this._x + Ball_Radius >= Scene_Width) {
             this._reverseX();
-        }  
+        }
         this._x = this._x + this._dx;
         this._y = this._y + this._dy;
     }
