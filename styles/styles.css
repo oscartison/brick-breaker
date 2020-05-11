@@ -78,3 +78,11 @@ footer {
   right: 10px;
   color:  #1d67bb;
 }
+
+#textBegin {
+  position: absolute;
+  left: 37%;
+  bottom: 50%;
+  color: #1d67bb;
+  font-size: 50px;
+}

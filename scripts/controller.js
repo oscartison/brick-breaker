@@ -61,9 +61,15 @@ $(document).ready(() => {
     const paddle = new Paddle(Scene_Width / 2 - Paddle_Width / 2);
     const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -1.5);
     const wall = createWall(Bricks_Rows, Bricks_Colums);
+    let begin = false;
 
     displayPaddle(paddle);
     displayBricks(wall);
+
+    $(document).click(function (e) {
+        begin = true;
+        hideStartMessage();
+    });
 
     $(document).mousemove(function (e) {
         const new_left = e.clientX - $("#gameContainer").offset().left - (Paddle_Width / 2);
@@ -72,11 +78,13 @@ $(document).ready(() => {
     });
 
     setInterval(() => {
-        ball.move();
-        displayBall(ball);
-        if (isBallOnPaddle(ball, paddle)) {
-            ball.hitPaddle();
+        if (begin) {
+            ball.move();
+            displayBall(ball);
+            if (isBallOnPaddle(ball, paddle)) {
+                ball.hitPaddle();
+            }
+            collisionBrick(wall, ball, player);
         }
-        collisionBrick(wall, ball, player);
     }, 5);
 });
