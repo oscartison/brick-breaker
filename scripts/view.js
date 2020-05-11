@@ -20,6 +20,14 @@ function displayBall(ball) {
 }
 
 /**
+ * updates the core of the player
+ * @param {number} score the new score of the player
+ */
+function updateScore(score) {
+    $("#score").text(score);
+}
+
+/**
  * displays the brick into the gameConainer at the right position
  * @param {Brick[]} bricks the wall of Bricks that needs to be displayed
  */
