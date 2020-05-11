@@ -38,6 +38,15 @@ footer {
   position: relative;
 }
 
+#scoreContainer {
+  border: 0.1em solid #1d67bb;
+  border-radius: 0.2em;
+  height: 20px;
+  width: 960px;
+  margin: auto;
+  position: relative;
+}
+
 #paddle {
   height: 16px;
   width: 96px;
@@ -62,4 +71,10 @@ footer {
   background-color: #1d67bb;
   position: absolute;
   box-sizing: border-box;
+}
+
+#score {
+  position: absolute;
+  right: 10px;
+  color:  #1d67bb;
 }

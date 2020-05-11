@@ -1,0 +1,13 @@
+{
+  "name": "webg2-projet1",
+  "version": "1.0.0",
+  "description": "application pour s'entrainer à traduire des phrases",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.3.34"
+  }
+}
