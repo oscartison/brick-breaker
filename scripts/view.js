@@ -47,8 +47,22 @@ function displayBricks(bricks) {
 
 /**
  * deletes a brick from the display
- * @param Brick{} brick the brick to remove
+ * @param {Brick} brick the brick to remove
  */
 function deleteBrick(brick) {
     $(`#brick${brick.id}`).addClass("hidden");
+}
+
+/**
+ * removes the start message
+ */
+function hideStartMessage() {
+    $("#textBegin").addClass("hidden");
+}
+
+/**
+ * shows the start message
+ */
+function showStratMessage() {
+    $("#textBegin").removeClass("hidden");
 }
