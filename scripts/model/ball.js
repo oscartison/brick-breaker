@@ -70,12 +70,22 @@ class Ball {
      * moves the ball dx in the horizontal direction and dy in the vertical direction
      */
     move() {
-        if (this._y - Ball_Radius <= 0 || this._y + Ball_Radius >= Scene_Height) {
+        if (this._y - Ball_Radius <= 0) {
             this._reverseY();
         } else if (this._x - Ball_Radius <= 0 || this._x + Ball_Radius >= Scene_Width) {
             this._reverseX();
         }
         this._x = this._x + this._dx;
         this._y = this._y + this._dy;
+    }
+
+    /**
+     * places the ball in the middle of the game and sets the direction
+     */
+    startMiddle() {
+        this._x = Scene_Width / 2;
+        this._y = Scene_Height / 2;
+        this._dx = 1;
+        this._dy = 1.5;
     }
 }

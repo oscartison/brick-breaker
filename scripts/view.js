@@ -66,3 +66,21 @@ function hideStartMessage() {
 function showStratMessage() {
     $("#textBegin").removeClass("hidden");
 }
+
+/**
+ * displays n lives
+ * @param {number} n the amount of lives to display
+ */
+function displayLives(n) {
+    for (let i = 0; i < n; i++) {
+        $("#lives").append($("<span>").addClass("heart"));
+    }
+}
+
+/**
+ * removes 1 live on the display
+ */
+function removeLive() {
+    $(".heart").eq($(".heart").length - 1)
+        .remove();
+}

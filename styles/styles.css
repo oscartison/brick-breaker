@@ -87,3 +87,8 @@ footer {
   color: #1d67bb;
   font-size: 50px;
 }
+
+.heart:before {
+  content: '\2665';
+  color: red;
+}
