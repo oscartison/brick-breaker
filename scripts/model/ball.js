@@ -80,7 +80,7 @@ class Ball {
     }
 
     /**
-     * places the ball in the middle of the game
+     * places the ball in the middle of the game and sets the direction
      */
     startMiddle() {
         this._x = Scene_Width / 2;

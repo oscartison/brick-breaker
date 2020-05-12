@@ -45,7 +45,6 @@ footer {
   width: 960px;
   margin: auto;
   position: relative;
-
 }
 
 #paddle {
@@ -92,5 +91,4 @@ footer {
 .heart:before {
   content: '\2665';
   color: red;
-  float: left;
 }

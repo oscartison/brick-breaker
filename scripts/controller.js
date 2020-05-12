@@ -58,7 +58,7 @@ function collisionBrick(wall, ball, player) {
  * @param {Player} player the player we check
  */
 function isGameOver(player) {
-    return player.lives === 0;
+    return !player.isAlive();
 }
 
 /**
@@ -66,13 +66,8 @@ function isGameOver(player) {
  * @param {Brick[]} wall the wall of bricks to check
  */
 function isWon(wall) {
-    let won = true;
-    for (let i = 0; i < wall.length; i++) {
-        if (wall[i].hit === false) {
-            won = false;
-        }
-    }
-    return won;
+    const isHit = (currentValue) => currentValue.hit === true;
+    return wall.every(isHit);
 }
 
 /**

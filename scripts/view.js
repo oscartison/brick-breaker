@@ -73,7 +73,7 @@ function showStratMessage() {
  */
 function displayLives(n) {
     for (let i = 0; i < n; i++) {
-        $("#lives").append($("<div>").addClass("heart"));
+        $("#lives").append($("<span>").addClass("heart"));
     }
 }
 
