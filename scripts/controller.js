@@ -54,6 +54,28 @@ function collisionBrick(wall, ball, player) {
 }
 
 /**
+ * checks if the game is over or not
+ * @param {Player} player the player we check
+ */
+function isGameOver(player) {
+    return player.lives === 0;
+}
+
+/**
+ * checks if the game is won, by checking if all the bricks were hit
+ * @param {Brick[]} wall the wall of bricks to check
+ */
+function isWon(wall) {
+    let won = true;
+    for (let i = 0; i < wall.length; i++) {
+        if (wall[i].hit === false) {
+            won = false;
+        }
+    }
+    return won;
+}
+
+/**
  * the gameloop
  * @param {Player} player the playe of the game
  * @param {Paddle} paddle the paddle of the game
@@ -61,13 +83,22 @@ function collisionBrick(wall, ball, player) {
  * @param {Brick[]} wall the array of bricks of the game
  */
 function gameLoop(player, paddle, ball, wall) {
-    setInterval(() => {
+    const loop = setInterval(() => {
         ball.move();
         displayBall(ball);
         if (isBallOnPaddle(ball, paddle)) {
             ball.hitPaddle();
         }
         collisionBrick(wall, ball, player);
+        if (ball.y + Ball_Radius >= Scene_Height) {
+            ball.startMiddle();
+            player.removeLive();
+            removeLive();
+        }
+
+        if (isWon(wall) || isGameOver(player)) {
+            clearInterval(loop);
+        }
     }, 5);
 
     $(document).mousemove(function (e) {
@@ -88,6 +119,7 @@ $(document).ready(() => {
 
     displayPaddle(paddle);
     displayBricks(wall);
+    displayLives(player.lives);
 
     $(document).one("click", function (e) {
         hideStartMessage();
