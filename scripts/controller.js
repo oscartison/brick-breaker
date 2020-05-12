@@ -54,6 +54,30 @@ function collisionBrick(wall, ball, player) {
 }
 
 /**
+ * the gameloop
+ * @param {Player} player the playe of the game
+ * @param {Paddle} paddle the paddle of the game
+ * @param {Ball} ball the ball of the game
+ * @param {Brick[]} wall the array of bricks of the game
+ */
+function gameLoop(player, paddle, ball, wall) {
+    setInterval(() => {
+        ball.move();
+        displayBall(ball);
+        if (isBallOnPaddle(ball, paddle)) {
+            ball.hitPaddle();
+        }
+        collisionBrick(wall, ball, player);
+    }, 5);
+
+    $(document).mousemove(function (e) {
+        const new_left = e.clientX - $("#gameContainer").offset().left - Paddle_Width / 2;
+        paddle.moveTo(new_left);
+        displayPaddle(paddle);
+    });
+}
+
+/**
  * when the mouse moves the paddle moves at the same width as the mouse
  */
 $(document).ready(() => {
@@ -61,30 +85,12 @@ $(document).ready(() => {
     const paddle = new Paddle(Scene_Width / 2 - Paddle_Width / 2);
     const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -1.5);
     const wall = createWall(Bricks_Rows, Bricks_Colums);
-    let begin = false;
 
     displayPaddle(paddle);
     displayBricks(wall);
 
-    $(document).click(function (e) {
-        begin = true;
+    $(document).one("click", function (e) {
         hideStartMessage();
+        gameLoop(player, paddle, ball, wall);
     });
-
-    $(document).mousemove(function (e) {
-        const new_left = e.clientX - $("#gameContainer").offset().left - (Paddle_Width / 2);
-        paddle.moveTo(new_left);
-        displayPaddle(paddle);
-    });
-
-    setInterval(() => {
-        if (begin) {
-            ball.move();
-            displayBall(ball);
-            if (isBallOnPaddle(ball, paddle)) {
-                ball.hitPaddle();
-            }
-            collisionBrick(wall, ball, player);
-        }
-    }, 5);
 });
