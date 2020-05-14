@@ -79,6 +79,19 @@ footer {
   color:  #1d67bb;
 }
 
+#level {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color:  #1d67bb;
+}
+
+#lives {
+  position: absolute;
+  width: 100%;
+  text-align: left;
+}
+
 #textBegin {
   position: absolute;
   width: 100%;
@@ -92,5 +105,3 @@ footer {
   content: '\2665';
   color: red;
 }
-
-

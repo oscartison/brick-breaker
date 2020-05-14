@@ -81,6 +81,14 @@ function displayLives(n) {
  * removes 1 life on the display
  */
 function removeLife() {
-    $(".heart").eq($(".heart").length - 1)
+    $(".heart").last()
         .remove();
+}
+
+/**
+ * displays the current level
+ * @param {number} n the number to display as level
+ */
+function displayLevel(n) {
+    $("#levelnb").text(n);
 }

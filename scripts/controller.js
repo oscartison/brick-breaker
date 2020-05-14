@@ -1,15 +1,11 @@
 "use strict";
 
-const player = new Player();
-const paddle = new Paddle(Scene_Width / 2 - Paddle_Width / 2);
-const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -1.5);
-let wall = createWall(Bricks_Rows, Bricks_Colums);
-let level = 1;
-
 /**
  * checks wehter there is a collision between the ball and the paddle
+ * @param {Paddle} paddle
+ * @param {Ball} ball
  */
-function isBallOnPaddle() {
+function isBallOnPaddle(paddle, ball) {
     return ball.x + Ball_Radius >= paddle.left &&
         ball.x - Ball_Radius <= paddle.left + Paddle_Width &&
         ball.y + Ball_Radius >= Scene_Height - Paddle_Height;
@@ -32,8 +28,12 @@ function createWall(rows, cols) {
 
 /**
  * checks if there is a collision with a brick and deletes that brick
+ * @param {Brick[]} wall the array of bricks
+ * @param {Ball} ball the ball in the game
+ * @param {Player} player the player in the game
+
  */
-function collisionBrick() {
+function collisionBrick(wall, ball, player) {
     let alreadyOneHit = false;
     for (let i = 0; i < wall.length; i++) {
         if (!wall[i].hit
@@ -56,46 +56,53 @@ function collisionBrick() {
 
 /**
  * checks if the game is over or not
+ * @param {Player} player the player we check
  */
-function isGameOver() {
+function isGameOver(player) {
     return !player.isAlive();
 }
 
 /**
  * checks if the game is won, by checking if all the bricks were hit
+ * @param {Brick[]} wall the wall of bricks to check
  */
-function isWon() {
+function isWon(wall) {
     const isHit = (currentValue) => currentValue.hit === true;
     return wall.every(isHit);
 }
 
 /**
  * the gameloop
+ * @param {Player} player the playe of the game
+ * @param {Paddle} paddle the paddle of the game
+ * @param {Ball} ball the ball of the game
+ * @param {Brick[]} wall the array of bricks of the game
  */
-function gameLoop() {
+function gameLoop(player, paddle, ball, wall, level) {
     const loop = setInterval(() => {
         ball.move();
         displayBall(ball);
-        if (isBallOnPaddle()) {
+        if (isBallOnPaddle(paddle, ball)) {
             ball.hitPaddle();
         }
-        collisionBrick();
+        collisionBrick(wall, ball, player);
         if (ball.y + Ball_Radius >= Scene_Height) {
             ball.startMiddle();
             player.removeLive();
             removeLife();
         }
 
-        if (isGameOver()) {
+        if (isGameOver(player)) {
             clearInterval(loop);
         }
-        if (isWon()) {
+        if (isWon(wall)) {
             wall = createWall(Bricks_Rows, Bricks_Colums);
             ball.startMiddle();
             player.addLive();
             displayLives(1);
             displayBricks(wall);
             level++;
+            displayLevel(level);
         }
     }, 10);
 
@@ -110,13 +117,18 @@ function gameLoop() {
  * when the mouse moves the paddle moves at the same width as the mouse
  */
 $(document).ready(() => {
+    const player = new Player();
+    const paddle = new Paddle(Scene_Width / 2 - Paddle_Width / 2);
+    const ball = new Ball(Scene_Width / 2, Scene_Height / 2, 1, -1.5);
+    const wall = createWall(Bricks_Rows, Bricks_Colums);
 
     displayPaddle(paddle);
     displayBricks(wall);
     displayLives(player.lives);
+    displayLevel(1);
 
     $(document).one("click", function (e) {
         hideStartMessage();
-        gameLoop();
+        gameLoop(player, paddle, ball, wall, 1);
     });
 });
