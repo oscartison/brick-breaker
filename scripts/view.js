@@ -50,7 +50,7 @@ function displayBricks(bricks) {
  * @param {Brick} brick the brick to remove
  */
 function deleteBrick(brick) {
-    $(`#brick${brick.id}`).addClass("hidden");
+    $(`#brick${brick.id}`).remove();
 }
 
 /**
@@ -78,9 +78,9 @@ function displayLives(n) {
 }
 
 /**
- * removes 1 live on the display
+ * removes 1 life on the display
  */
-function removeLive() {
+function removeLife() {
     $(".heart").eq($(".heart").length - 1)
         .remove();
 }
