@@ -2,10 +2,10 @@
 
 /**
  * checks wehter there is a collision between the ball and the paddle
- * @param {Ball} ball
  * @param {Paddle} paddle
+ * @param {Ball} ball
  */
-function isBallOnPaddle(ball, paddle) {
+function isBallOnPaddle(paddle, ball) {
     return ball.x + Ball_Radius >= paddle.left &&
         ball.x - Ball_Radius <= paddle.left + Paddle_Width &&
         ball.y + Ball_Radius >= Scene_Height - Paddle_Height;
@@ -31,6 +31,7 @@ function createWall(rows, cols) {
  * @param {Brick[]} wall the array of bricks
  * @param {Ball} ball the ball in the game
  * @param {Player} player the player in the game
+
  */
 function collisionBrick(wall, ball, player) {
     let alreadyOneHit = false;
@@ -77,24 +78,33 @@ function isWon(wall) {
  * @param {Ball} ball the ball of the game
  * @param {Brick[]} wall the array of bricks of the game
  */
-function gameLoop(player, paddle, ball, wall) {
+function gameLoop(player, paddle, ball, wall, level) {
     const loop = setInterval(() => {
         ball.move();
         displayBall(ball);
-        if (isBallOnPaddle(ball, paddle)) {
+        if (isBallOnPaddle(paddle, ball)) {
             ball.hitPaddle();
         }
         collisionBrick(wall, ball, player);
         if (ball.y + Ball_Radius >= Scene_Height) {
             ball.startMiddle();
             player.removeLive();
-            removeLive();
+            removeLife();
         }
 
-        if (isWon(wall) || isGameOver(player)) {
+        if (isGameOver(player)) {
             clearInterval(loop);
         }
-    }, 5);
+        if (isWon(wall)) {
+            wall = createWall(Bricks_Rows, Bricks_Colums);
+            ball.startMiddle();
+            player.addLive();
+            displayLives(1);
+            displayBricks(wall);
+            level++;
+            displayLevel(level);
+        }
+    }, 10);
 
     $(document).mousemove(function (e) {
         const new_left = e.clientX - $("#gameContainer").offset().left - Paddle_Width / 2;
@@ -115,9 +125,10 @@ $(document).ready(() => {
     displayPaddle(paddle);
     displayBricks(wall);
     displayLives(player.lives);
+    displayLevel(1);
 
     $(document).one("click", function (e) {
         hideStartMessage();
-        gameLoop(player, paddle, ball, wall);
+        gameLoop(player, paddle, ball, wall, 1);
     });
 });

@@ -50,7 +50,7 @@ function displayBricks(bricks) {
  * @param {Brick} brick the brick to remove
  */
 function deleteBrick(brick) {
-    $(`#brick${brick.id}`).addClass("hidden");
+    $(`#brick${brick.id}`).remove();
 }
 
 /**
@@ -78,9 +78,17 @@ function displayLives(n) {
 }
 
 /**
- * removes 1 live on the display
+ * removes 1 life on the display
  */
-function removeLive() {
-    $(".heart").eq($(".heart").length - 1)
+function removeLife() {
+    $(".heart").last()
         .remove();
+}
+
+/**
+ * displays the current level
+ * @param {number} n the number to display as level
+ */
+function displayLevel(n) {
+    $("#levelnb").text(n);
 }

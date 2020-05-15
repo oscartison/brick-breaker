@@ -40,6 +40,13 @@ class Player {
     }
 
     /**
+     * adds one live to the player
+     */
+    addLive() {
+        this._lives++;
+    }
+
+    /**
      * checks if the player still is alive
      */
     isAlive() {
